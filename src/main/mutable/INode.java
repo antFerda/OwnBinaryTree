@@ -1,4 +1,4 @@
-package main;
+package main.mutable;
 
 public interface INode {
     INode add(final Integer value); //возвращает новую ноду. не меняет состояние дерева внутри. immutable

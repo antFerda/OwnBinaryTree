@@ -1,4 +1,4 @@
-package main;
+package main.mutable;
 
 public class MutableNode implements INode {
 

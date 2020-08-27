@@ -1,20 +1,24 @@
-package main;
-
-public class ImmutableNode implements INode {
+package main.immutable;
 
 
-    private final int value;
-    private final INode left;
-    private final INode right;
+import java.util.function.Consumer;
 
-    public ImmutableNode(int value, INode left, INode right) {
+public class ImmutableNode implements IMNode<Integer> {
+
+
+    private final Integer value;
+    private final IMNode left;
+    private final IMNode right;
+
+    public ImmutableNode(Integer value, IMNode left, IMNode right) {
         this.value = value;
         this.left = left;
         this.right = right;
     }
 
+
     @Override
-    public INode add(final Integer value) {
+    public IMNode add(Integer value) {
         if(this.value == value) return this;
         if(value < this.value) {
             if(left == null)
@@ -28,10 +32,10 @@ public class ImmutableNode implements INode {
     }
 
     @Override
-    public void print() {
-        if(left != null) left.print();
-        System.out.println(this.value);
-        if(right != null) right.print();
+    public void forEach(Consumer consumer) {
+        if(left != null) left.forEach(consumer);
+        consumer.accept(value);
+        if(right != null) right.forEach(consumer);
     }
 
     @Override
